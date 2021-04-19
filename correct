@@ -2,6 +2,7 @@
 # Takes two lists and replaces them item by item globally.
 # The lists can contain regular expressions
 # Copyright 2021 by Alan Munn amunn@msu.edu
+# MIT Licence
 #
 while getopts c:i:h option
 do
@@ -33,10 +34,7 @@ else
   fname="${filename%.*}"
   output_file="${fname}_output.$extension"
   while IFS="," read -r old_word  new_word;
-    do
-  # from_list=('bratwurst' 'wiener')
-  # to_list=('Bratwurst' 'Wiener')
-  # for i in "${!from_list[@]}"
+   do
    echo "s/${old_word}/${new_word%%[[:space:]]}/g"
    done < $correction_file > tmp_correct.sed
   cat "$input_file" | sed -E -f "tmp_correct.sed" > "$output_file"
