@@ -1,0 +1,45 @@
+#! /bin/bash
+# Takes two lists and replaces them item by item globally.
+# The lists can contain regular expressions
+# Copyright 2021 by Alan Munn amunn@msu.edu
+#
+while getopts c:i:h option
+do
+  case "${option}"
+    in
+    c)
+     correction_file="$OPTARG"
+     echo "Using corrections file:  $correction_file"
+     ;;
+    i)
+    input_file="$OPTARG"
+    echo "Using input file: $input_file"
+    ;;
+    h)
+    echo "Usage: correct -i <inputfile> -c <correctionsfile>"
+    echo "Output will be stored in <output_inputfile>"
+    exit 0
+    ;;
+  esac
+done
+if [ ! -f "$input_file" ]; then
+  echo "$input_file does not exist!"
+else
+  if [ ! -f "$correction_file" ]; then
+    echo "$correction_file does not exist!"
+  else
+  filename=$(basename -- "$input_file")
+  extension="${filename##*.}"
+  fname="${filename%.*}"
+  output_file="${fname}_output.$extension"
+  while IFS="," read -r old_word  new_word;
+    do
+  # from_list=('bratwurst' 'wiener')
+  # to_list=('Bratwurst' 'Wiener')
+  # for i in "${!from_list[@]}"
+   echo "s/${old_word}/${new_word%%[[:space:]]}/g"
+   done < $correction_file > tmp_correct.sed
+  cat "$input_file" | sed -E -f "tmp_correct.sed" > "$output_file"
+  rm tmp_correct.sed
+fi
+fi
