@@ -56,7 +56,7 @@ Table: Characters that require `\` to acquire a special meaning
 
 
 | Character   | inside search string | inside replacement string |
-| ----------- | -------------------- : ------------------------- |
+| ----------- | -------------------- | ------------------------- |
 | `\1 \2` ..  |  NA                  | search group 1, 2 etc.    |
 | `\+`        |  match 1 or more     | NA                        |
 
