@@ -43,7 +43,7 @@ Table: Characters that need to be escaped for searching
 
 
 | Character   | Inside search string | Inside replacement string |
-: ----------- : -------------------- : ------------------------- :
+| ----------- | -------------------- | ------------------------- |
 | `{` and `}` |  `\{` and `\}`       | `{` and `}`               |
 | `[` and `]` |  `\[` and `\]`       | `[` and `]`               |
 | `(` and `)` |  `\(` and `\)`       | `(` and `)`               |
@@ -56,7 +56,7 @@ Table: Characters that require `\` to acquire a special meaning
 
 
 | Character   | inside search string | inside replacement string |
-: ----------- : -------------------- : ------------------------- :
+| ----------- | -------------------- : ------------------------- |
 | `\1 \2` ..  |  NA                  | search group 1, 2 etc.    |
 | `\+`        |  match 1 or more     | NA                        |
 
